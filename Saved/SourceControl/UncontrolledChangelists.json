@@ -1,0 +1,35 @@
+{
+	"version": 1,
+	"changelists": [
+		{
+			"guid": "00000000000000000000000000000000",
+			"description": "Default Uncontrolled Changelist",
+			"files": [
+				"D:/_MY_UE_PROJECTS/_UE5/MyProject/Content/StarterContent/Architecture/Floor_400x400.uasset",
+				"D:/_MY_UE_PROJECTS/_UE5/MyProject/Content/Scenes/FirstLvl.umap",
+				"D:/_MY_UE_PROJECTS/_UE5/MyProject/Content/BP_GameMode.uasset",
+				"D:/_MY_UE_PROJECTS/_UE5/MyProject/Content/BP_Door.uasset",
+				"D:/_MY_UE_PROJECTS/_UE5/MyProject/Content/Input/IA_InputAction.uasset",
+				"D:/_MY_UE_PROJECTS/_UE5/MyProject/Content/Input/IMC_InputMapping.uasset",
+				"D:/_MY_UE_PROJECTS/_UE5/MyProject/Content/Input/IA_Use.uasset",
+				"D:/_MY_UE_PROJECTS/_UE5/MyProject/Content/BP/BP_Char.uasset",
+				"D:/_MY_UE_PROJECTS/_UE5/MyProject/Content/BP/BP_Door.uasset",
+				"D:/_MY_UE_PROJECTS/_UE5/MyProject/Content/BP/BP_PlayerController.uasset",
+				"D:/_MY_UE_PROJECTS/_UE5/MyProject/Content/BP/Interfaces/BP_UseInterface.uasset",
+				"D:/_MY_UE_PROJECTS/_UE5/MyProject/Content/Input/IA_MouseLook.uasset",
+				"D:/_MY_UE_PROJECTS/_UE5/MyProject/Content/BP/Interfaces/BP_InteractionObject.uasset",
+				"D:/_MY_UE_PROJECTS/_UE5/MyProject/Content/BP/BP_Chest.uasset",
+				"D:/_MY_UE_PROJECTS/_UE5/MyProject/Content/BP/Interfaces/BP_InteractInterface.uasset",
+				"D:/_MY_UE_PROJECTS/_UE5/MyProject/Content/BP/Interfaces/BP_InteractionObjectInterface.uasset",
+				"D:/_MY_UE_PROJECTS/_UE5/MyProject/Content/Input/IA_Interact.uasset",
+				"D:/_MY_UE_PROJECTS/_UE5/MyProject/Content/BP_PlayerController.uasset",
+				"D:/_MY_UE_PROJECTS/_UE5/MyProject/Content/IMC_InputMapping.uasset",
+				"D:/_MY_UE_PROJECTS/_UE5/MyProject/Content/IA_InputAction.uasset",
+				"D:/_MY_UE_PROJECTS/_UE5/MyProject/Content/BP_Char.uasset",
+				"D:/_MY_UE_PROJECTS/_UE5/MyProject/Content/IA_Use.uasset",
+				"D:/_MY_UE_PROJECTS/_UE5/MyProject/Content/NewBlueprint.uasset",
+				"D:/_MY_UE_PROJECTS/_UE5/MyProject/Content/Scenes/L_First.umap"
+			]
+		}
+	]
+}
