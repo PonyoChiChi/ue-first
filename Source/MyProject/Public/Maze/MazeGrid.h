@@ -7,7 +7,7 @@
 
 
 USTRUCT(BlueprintType)
-struct FMazeRoadNeighbours
+struct FMazeNeighbours
 {
 	GENERATED_BODY()
 
@@ -58,6 +58,8 @@ public:
 private:
 	void AddWalls(const int32& RowInd, const int32& ColInd);
 	void InitializeMaze();
+	void AddBorderWalls();
+	void GenerateMazeGrid();
 
 
 public:
@@ -65,11 +67,11 @@ public:
 	bool GetMazeCell(const int32& RowInd, const int32& ColInd);
 
 	UFUNCTION(BlueprintCallable, Category="MazeGrid")
-	FMazeRoadNeighbours GetMazeCellNeighbours(const int32& RowInd, const int32& ColInd);
+	FMazeNeighbours GetMazeCellNeighbours(const int32& RowInd, const int32& ColInd);
 
 	UFUNCTION(BlueprintCallable, Category="MazeGrid")
-	void GenerateMazeGrid(const int32& HeightValue, const int32& WidthValue);
-
+	void CreateMaze(const int32& HeightValue, const int32& WidthValue);
+	
 	UFUNCTION(BlueprintGetter, Category="MazeGrid")
 	int32 GetMazeWidth() const;
 

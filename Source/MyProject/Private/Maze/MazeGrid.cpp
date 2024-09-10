@@ -54,12 +54,9 @@ void AMazeGrid::InitializeMaze()
 	UE_LOG(LogTemp, Warning, TEXT("Debug Message: 'InitializeMaze' finished. (Num=%d)"), Maze.Num());
 }
 
-void AMazeGrid::GenerateMazeGrid(const int32& HeightValue, const int32& WidthValue)
+void AMazeGrid::GenerateMazeGrid()
 {
 	UE_LOG(LogTemp, Warning, TEXT("Debug Message: 'GenerateMazeGrid' started."));
-	this->Height = HeightValue;
-	this->Width = WidthValue;
-	this->InitializeMaze();
 	
 	if (Maze.Num() == 0)
 	{
@@ -96,8 +93,73 @@ void AMazeGrid::GenerateMazeGrid(const int32& HeightValue, const int32& WidthVal
 			
 		}
 	}
+	
 	UE_LOG(LogTemp, Warning, TEXT("Debug Message: 'GenerateMazeGrid' finished."));
 }
+
+void AMazeGrid::AddBorderWalls()
+{
+	UE_LOG(LogTemp, Warning, TEXT("Debug Message: 'AddBorderWalls' started."));
+
+	TArray<TArray<bool>> NewMaze;
+	int32 NewHeight = Height;
+	int32 NewWidth = Width;
+	bool NeedTopWall = false;
+	bool NeedBottomWall = false;
+	bool NeedLeftWall = false;
+	bool NeedRightWall = false;
+	
+	if (Maze[0][0])
+	{
+		NeedTopWall = true;
+		NeedLeftWall = true;
+	} else if (Maze[0][Width - 1])
+	{
+		NeedTopWall = true;
+		NeedRightWall = true;
+	} else if (Maze[Height - 1][0])
+	{
+		NeedBottomWall = true;
+		NeedLeftWall = true;
+	} else
+	{
+		NeedBottomWall = true;
+		NeedRightWall = true;
+	}
+
+	UE_LOG(LogTemp, Warning, TEXT("T - %d; B - %d; L - %d; R - %d"),
+		NeedTopWall, NeedBottomWall, NeedLeftWall, NeedRightWall);
+
+	NewHeight++;
+	NewWidth++;
+
+	NewMaze.SetNum(NewHeight);
+	for (int32 RowInd = 0; RowInd < NewHeight; RowInd++)
+	{
+		NewMaze[RowInd].SetNum(NewWidth);
+		for (int32 ColInd = 0; ColInd < NewWidth; ColInd++)
+		{
+			NewMaze[RowInd][ColInd] = false;
+		}
+	}
+
+	int32 RowOffset = NeedTopWall ? 1 : 0;
+	int32 ColOffset = NeedLeftWall ? 1 : 0;
+	for (int32 RowInd = 0; RowInd < Height; RowInd++)
+	{
+		for (int32 ColInd = 0; ColInd < Width; ColInd++)
+		{
+			NewMaze[RowInd + RowOffset][ColInd + ColOffset] = Maze[RowInd][ColInd];
+		}
+	}
+
+	Maze = NewMaze;
+	Height = NewHeight;
+	Width = NewWidth;
+
+	UE_LOG(LogTemp, Warning, TEXT("Debug Message: 'AddBorderWalls' finished."));
+}
+
 
 int32 AMazeGrid::GetMazeWidth() const
 {
@@ -121,9 +183,9 @@ bool AMazeGrid::GetMazeCell(const int32& RowInd, const int32& ColInd)
 	return false;
 }
 
-FMazeRoadNeighbours AMazeGrid::GetMazeCellNeighbours(const int32& RowInd, const int32& ColInd)
+FMazeNeighbours AMazeGrid::GetMazeCellNeighbours(const int32& RowInd, const int32& ColInd)
 {
-	FMazeRoadNeighbours MazeRoadNeighbours;
+	FMazeNeighbours MazeRoadNeighbours;
 	
 	if (Maze[RowInd].IsValidIndex(ColInd-1) && Maze[RowInd][ColInd-1] == true)
 	{
@@ -142,5 +204,19 @@ FMazeRoadNeighbours AMazeGrid::GetMazeCellNeighbours(const int32& RowInd, const 
 		MazeRoadNeighbours.bIsRoadAbove = true;
 	}
 	return MazeRoadNeighbours;
+}
+
+void AMazeGrid::CreateMaze(const int32& HeightValue, const int32& WidthValue)
+{
+	UE_LOG(LogTemp, Warning, TEXT("Debug Message: 'CreateMaze' started."));
+	
+	this->Height = HeightValue;
+	this->Width = WidthValue;
+	
+	this->InitializeMaze();
+	this->GenerateMazeGrid();
+	this->AddBorderWalls();
+
+	UE_LOG(LogTemp, Warning, TEXT("Debug Message: 'CreateMaze' finished."));	
 }
 
